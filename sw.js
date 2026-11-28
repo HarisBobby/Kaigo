@@ -1,6 +1,6 @@
 /* Service worker 介護の扉. Naikkan VERSI setiap kali index.html diperbarui. */
-const VERSI='kgtb-v1';
-const INTI=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-maskable-512.png','apple-touch-icon.png'];
+const VERSI='kgtb-v4';
+const INTI=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-1024.png','icon-maskable-512.png','apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSI).then(c=>c.addAll(INTI)))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith('kgtb-')&&x!==VERSI).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING')self.skipWaiting()});
